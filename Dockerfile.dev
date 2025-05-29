@@ -1,0 +1,19 @@
+FROM ubuntu:22.04
+
+# Install only essential dev tools
+RUN apt-get update -o Debug::Acquire::http=true && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        gdb \
+        git \
+        vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a non-root user for development
+RUN useradd -ms /bin/bash devuser
+USER devuser
+WORKDIR /home/devuser/app
+
+# Default to bash shell
+CMD ["/bin/bash"]
