@@ -8,6 +8,10 @@ RUN apt-get update -o Debug::Acquire::http=true && \
         gdb \
         git \
         vim \
+        ca-certificates \
+        curl \
+        python3 \
+        python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user for development
